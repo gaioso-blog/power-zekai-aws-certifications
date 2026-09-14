@@ -1,0 +1,20 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "zekai-aws-certifications",
+  "version": "1.0.0",
+  "description": "Generate officially grounded practice questions, interactive quizzes, mock exams, explanations, flashcards, study plans and AWS service comparisons for any current AWS Certification exam across Foundational, Associate, Professional and Specialty levels.",
+  "author": {
+    "name": "João Gaioso"
+  },
+  "homepage": "https://github.com/gaioso-blog/power-zekai-aws-certifications",
+  "repository": "https://github.com/gaioso-blog/power-zekai-aws-certifications",
+  "keywords": [
+    "aws",
+    "certification",
+    "quiz",
+    "practice-questions",
+    "study",
+    "exam-prep"
+  ],
+  "license": "MIT"
+}
