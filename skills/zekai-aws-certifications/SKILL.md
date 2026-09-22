@@ -221,6 +221,29 @@ A learner who meets the same Multi-AZ-versus-read-replica scenario four times in
 2. Never reuse `avoid_topics`. Prefer topics absent from `historical_topics` on **every** interactive session, not only long simulations. Once a domain is exhausted, a historical topic may return only with substantially different scenario, constraints, and correct service — never a reworded twin.
 3. Pass a stable `--topic` label for the concept, not the cover story: `"RDS Multi-AZ vs Read Replica"`. Consistent labels make deduplication work.
 
+### Service variety within a domain
+
+Respecting domain weights is not enough. A domain like "Design secure architectures" can be
+asked ten times and still feel monotonous if every question orbits the same two or three
+services. Coverage of *domains* is the script's job (`suggest`); coverage of *services* is
+yours.
+
+4. **Rotate comparison sets.** `references/distractor-engineering.md` groups services into
+   comparison sets (messaging/events, data/databases, networking/edge, security, storage/cost,
+   AI/GenAI). Within a domain, move to a different comparison set than the last few questions
+   used before reaching for a familiar one. Do not stay on one set until it is exhausted.
+5. **Draw on the exam's full in-scope service list.** The `references/exams/<code>.md` study
+   map lists the services in scope per area. Before writing a question, glance at which
+   services you have already featured this session and deliberately pick one you have not
+   used recently — including the less obvious in-scope services, not only the headline ones
+   (S3, EC2, Lambda, RDS).
+6. **Vary the tested keyword too.** Do not chain several "most cost-effective" questions in a
+   row. Rotate the decision axis (cost, operational overhead, security, availability, latency)
+   so the reasoning stays fresh even when a service reappears.
+7. Because `--topic` labels the service pairing (e.g. `"SQS FIFO vs Kinesis"`), the
+   `historical_topics` list doubles as a record of which service families you have already
+   mined. Scan it and steer toward families that are absent.
+
 ## Domain coverage
 
 Simulation coverage must mirror the guide's published weights, not intuition. `suggest` compares each domain's expected share of `--total` against what has actually been asked and returns the largest deficit.
@@ -254,6 +277,37 @@ Every wrong option must be plausible in some AWS context, partially satisfy the 
 
 **Before any hard or exam-level question, read `references/distractor-engineering.md`** for the 7-step procedure, distractor criteria, near-miss patterns, and comparison sets. Pull the correct answer and its distractors from the *same* comparison set — that is what forces real elimination instead of keyword matching.
 
+## Answer position distribution
+
+A learner who notices the correct answer is almost always the same letter stops reading
+the options and starts pattern-matching the position. This destroys the test. Left
+unmanaged, generated questions drift toward a single favored letter (often the longest or
+"most complete" option landing in the same slot every time).
+
+Rules for placing the correct answer:
+
+1. **Decide the letter before writing prose, and vary it.** After building the correct
+   solution and its distractors, deliberately assign which letter (A–D, or A–E/A–F for
+   multiple-response) holds the correct answer. Do not let it fall into place naturally.
+2. **Rotate across the session.** Track the letter you used on recent questions and pick a
+   different one. Across any run of 8 questions, no single letter should hold the correct
+   answer more than about a quarter of the time; aim for a roughly even spread over A/B/C/D
+   (and E/F when present). Never place the correct answer on the same letter three times in
+   a row.
+3. **Position must carry no signal.** The correct option must not be identifiable by being
+   the longest, the most detailed, the only one in best-practice language, or the one in a
+   habitual slot. Equalize length and tone (quality gate item 3) *after* assigning the
+   letter, so the shuffle never leaks through option length.
+4. **Shuffle the whole option, not just the label.** When you move the correct answer to a
+   new letter, physically reorder the option texts so distractors occupy the vacated slots.
+   Then re-map every per-option explanation, the `correct_answers` letters in `pending-set`,
+   and any Study Mode "why wrong" lines to the new positions. A mismatch here silently
+   grades the learner wrong — re-read the final options against the explanations before
+   emitting.
+
+This is an authoring discipline: `session.py` records whatever `correct_answers` you send
+and never reshuffles, so even distribution is your responsibility, not the script's.
+
 ## Quality gate
 
 Run this before emitting any question. Silent by default.
@@ -274,10 +328,14 @@ Run this before emitting any question. Silent by default.
 9. Scenario carries enough constraints to force reasoning → if not, add them.
 10. Key service appears in more than just the correct option → if not, add it elsewhere.
 
-**Items 11-12 apply during a session:**
+**Items 11-14 apply during a session:**
 
 11. Topic is absent from `avoid_topics` → otherwise pick another.
 12. Domain matches `suggested_domain`, unless the user chose one → otherwise re-check coverage.
+13. Correct-answer letter was deliberately assigned and is not the same letter used on the
+    previous two questions; the spread stays roughly even across the session → if not, move it.
+14. The service/comparison set differs from the last few questions in this domain; the
+    correct service is not a reworded twin of a recent one → if not, rotate to another set.
 
 If an item still fails after rewriting, note the limitation and explain why it could not be satisfied.
 
@@ -305,6 +363,8 @@ While active, emit this block immediately before each hard/exam-level question:
 10. key service not exclusive to correct option ✓/✗
 11. topic not already used ✓/✗
 12. domain matches coverage plan ✓/✗
+13. answer letter varied (not same as prior two; spread even) ✓/✗
+14. service/comparison set rotated (not a recent twin) ✓/✗
 rewrites: {{n}} — {{item number and technique, e.g. "item 7: strengthened plausibility with a near-miss"}}
 ```
 

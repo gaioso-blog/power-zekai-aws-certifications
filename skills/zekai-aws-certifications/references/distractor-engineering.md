@@ -1,7 +1,10 @@
 # Distractor Engineering
 
 Load this file when constructing **hard** or **exam-level** questions, or when the user
-asks why a distractor works. Easy and medium questions do not need it.
+asks why a distractor works. Easy and medium questions do not need the full 7-step
+procedure — but the "Comparison sets" list at the end is useful at every difficulty for
+rotating which services a question exercises (see "Service variety within a domain" in
+`SKILL.md`).
 
 ## Hard question construction
 
@@ -19,6 +22,18 @@ asks why a distractor works. Easy and medium questions do not need it.
    - valid for a different scenario, but not this one
 6. Equalize all options in length, specificity, and quality of best-practice language.
 7. Confirm the answer cannot be reached by keyword matching alone.
+8. Assign the correct answer to a deliberately chosen letter (see "Answer position" below)
+   and reorder the option texts accordingly before writing the explanations.
+
+## Answer position
+
+Do not let the correct option settle into a habitual slot. After step 5 you have one correct
+option and several distractors as a set — choose which letter carries the correct answer on
+purpose, varying it from the previous questions, then place the distractors in the remaining
+slots. Reorder the actual option texts (not just the labels), then map `correct_answers` and
+every per-option explanation to the final positions. The correct option must not be
+identifiable by length, detail, or best-practice tone once positioned. See "Answer position
+distribution" in `SKILL.md` for the session-level spread rule.
 
 ## What makes a distractor good
 

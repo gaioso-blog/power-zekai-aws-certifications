@@ -30,8 +30,13 @@ chooses to discard the active session.
 
 1. Run `python3 scripts/session.py suggest`. Use `suggested_domain` unless the user chose
    one. Never reuse `avoid_topics`; prefer topics absent from `historical_topics` until
-   the domain is exhausted.
-2. Construct the question and complete official grounding. Before displaying it, run:
+   the domain is exhausted. Scan `historical_topics` for service families already mined and
+   steer toward one you have not used recently (see "Service variety within a domain" in
+   `SKILL.md`).
+2. Construct the question and complete official grounding. Deliberately assign the
+   correct-answer letter so it varies from the previous questions and stays evenly spread
+   (see "Answer position distribution" in `SKILL.md`) — `session.py` never reshuffles.
+   Before displaying it, run:
    ```bash
    python3 scripts/session.py pending-set --payload '<JSON>'
    ```
