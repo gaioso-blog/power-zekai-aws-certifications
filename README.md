@@ -295,13 +295,15 @@ Todo o estado interativo vive em disco em `~/.zekai` (sobrescrito via `$ZEKAI_ST
 
 O estado sobrevive à compactação de contexto, reinicializações do IDE e novas sessões de chat.
 
+**Persistência entre atualizações do power:** `~/.zekai` fica fora do diretório de instalação do power, então atualizar, reinstalar ou remover o power não apaga suas pontuações, histórico de tópicos nem sessões arquivadas. Os scripts rodam no shell do agente (não como subprocesso MCP), por isso o diretório `${PLUGIN_DATA}` da spec não está disponível para eles; é por isso que o caminho do estado é no nível do usuário. Para zerar tudo, apague o diretório manualmente ou use `session.py reset` (limpa apenas a sessão ativa; histórico e calibração são mantidos).
+
 ---
 
 ## Referência dos scripts
 
 ### session.py
 
-`scripts/session.py` é a fonte da verdade para todo o estado de sessão interativa.
+`scripts/session.py` é a fonte da verdade para todo o estado de sessão interativa. Ele é o ponto de entrada da CLI; a lógica fica em módulos irmãos (`zekai_common.py`, `zekai_quiz.py`, `zekai_summary.py`, `zekai_design.py`) para manter cada arquivo pequeno.
 Emite JSON no stdout e usa código de saída 0 para sucesso, 1 para erros.
 
 **Diretório de estado:** resolvido na ordem: flag `--state-dir` → `$ZEKAI_STATE_DIR` → `~/.zekai`
@@ -431,7 +433,11 @@ zekai-aws-certifications/
     └── zekai-aws-certifications/
         ├── SKILL.md                               # Skill principal: todos os modos, regras, sequência de startup
         ├── scripts/
-        │   ├── session.py                         # Motor de estado de sessão (quiz + desafio de arquitetura)
+        │   ├── session.py                         # Ponto de entrada da CLI de estado (parser + despacho)
+        │   ├── zekai_common.py                    # Constantes, I/O de estado e helpers compartilhados
+        │   ├── zekai_quiz.py                      # Comandos de quiz: start, pending-*, timer-start, grade, calibrate
+        │   ├── zekai_summary.py                   # status, progress, asked, suggest, end, debug, reset
+        │   ├── zekai_design.py                    # Comandos do desafio de arquitetura (design-*)
         │   ├── resolve_exam.py                    # Validador de código de exame e cache de metadados
         │   └── export_report.py                   # Gerador de relatório markdown
         ├── references/
@@ -484,7 +490,7 @@ O servidor MCP é configurado em `mcp.json` na raiz do power:
 ```
 
 **Diretório de estado:** padrão `~/.zekai`. Sobrescreva com a variável de ambiente
-`ZEKAI_STATE_DIR` para usar um caminho diferente (ex.: diretório específico do projeto).
+`ZEKAI_STATE_DIR` para usar um caminho diferente (ex.: diretório específico do projeto). Esse diretório fica fora da pasta de instalação do power e persiste entre atualizações.
 
 ---
 

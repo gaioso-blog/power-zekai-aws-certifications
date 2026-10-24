@@ -292,13 +292,15 @@ All interactive state lives on disk in `~/.zekai` (overridable via `$ZEKAI_STATE
 
 State survives context compaction, IDE restarts, and new chat sessions.
 
+**Persistence across power updates:** `~/.zekai` lives outside the power's install directory, so updating, reinstalling, or removing the power does not delete your scores, topic history, or archived sessions. The scripts run from the agent's shell (not as an MCP subprocess), so the spec's `${PLUGIN_DATA}` directory is not available to them; that is why the state path is user-level. To reset everything, delete the directory manually or run `session.py reset` (clears only the active session; history and calibration are kept).
+
 ---
 
 ## Scripts reference
 
 ### session.py
 
-`scripts/session.py` is the single source of truth for all interactive session state.
+`scripts/session.py` is the single source of truth for all interactive session state. It is the CLI entry point; the logic lives in sibling modules (`zekai_common.py`, `zekai_quiz.py`, `zekai_summary.py`, `zekai_design.py`) so each file stays small.
 It outputs JSON on stdout and uses exit code 0 for success, 1 for errors.
 
 **State directory:** resolved in order: `--state-dir` flag → `$ZEKAI_STATE_DIR` → `~/.zekai`
@@ -424,7 +426,11 @@ zekai-aws-certifications/
     └── zekai-aws-certifications/
         ├── SKILL.md                               # Main skill: all modes, rules, startup sequence
         ├── scripts/
-        │   ├── session.py                         # Session state engine (quiz + architecture challenge)
+        │   ├── session.py                         # Session state CLI entry point (argument parser + dispatch)
+        │   ├── zekai_common.py                    # Shared constants, state I/O and helpers
+        │   ├── zekai_quiz.py                      # Quiz commands: start, pending-*, timer-start, grade, calibrate
+        │   ├── zekai_summary.py                   # status, progress, asked, suggest, end, debug, reset
+        │   ├── zekai_design.py                    # Architecture challenge commands (design-*)
         │   ├── resolve_exam.py                    # Exam code validator and metadata cache
         │   └── export_report.py                   # Markdown report generator
         ├── references/
@@ -477,7 +483,7 @@ The MCP server is configured in `mcp.json` at the power root:
 ```
 
 **State directory:** defaults to `~/.zekai`. Override with the environment variable
-`ZEKAI_STATE_DIR` to use a different path (e.g., a project-specific directory).
+`ZEKAI_STATE_DIR` to use a different path (e.g., a project-specific directory). This directory is outside the power's install folder and persists across power updates.
 
 ---
 
