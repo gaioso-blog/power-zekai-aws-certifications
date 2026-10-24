@@ -5,7 +5,7 @@ license: MIT
 compatibility: Requires Python 3.8+ for scripts/. Strongly recommends awslabs.aws-documentation-mcp-server; without it, official web sources are attempted. If no official source is reachable, the skill pauses graded content rather than inventing facts. Needs write access to $ZEKAI_STATE_DIR (default ~/.zekai). No AWS account or credentials required.
 metadata:
   author: João Gaioso
-  version: 1.0.0
+  version: 1.1.0
   repository: https://github.com/gaioso-blog/power-zekai-aws-certifications
 ---
 
