@@ -1,11 +1,11 @@
 ---
 name: zekai-aws-certifications
-description: Generate officially grounded practice questions, interactive quizzes, mock exams, architecture design challenges, explanations, flashcards, study plans and AWS service comparisons for any current AWS Certification exam across Business, Foundational, Associate, Professional and Specialty levels. Use when the user wants practice for any AWS exam code, including newly released exams verified against the live official index: study with answer keys, one-question-at-a-time quizzes, mock exams, answer breakdowns, exam traps, and service trade-offs.
+description: Generate officially grounded practice questions, interactive quizzes, mock exams, architecture design challenges, explanations, flashcards, study plans and AWS service comparisons for any current AWS Certification exam across Business, Foundational, Associate, Professional and Specialty levels. Use when the user wants practice for any AWS exam code, including newly released exams verified against the live official index, for study with answer keys, one-question-at-a-time quizzes, mock exams, answer breakdowns, exam traps, and service trade-offs.
 license: MIT
 compatibility: Requires Python 3.8+ for scripts/. Strongly recommends awslabs.aws-documentation-mcp-server; without it, official web sources are attempted. If no official source is reachable, the skill pauses graded content rather than inventing facts. Needs write access to $ZEKAI_STATE_DIR (default ~/.zekai). No AWS account or credentials required.
 metadata:
   author: João Gaioso
-  version: 1.1.0
+  version: 1.1.1
   repository: https://github.com/gaioso-blog/power-zekai-aws-certifications
 ---
 
