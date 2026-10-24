@@ -1,6 +1,6 @@
 ---
 name: zekai-aws-certifications
-description: Generate officially grounded practice questions, interactive quizzes, mock exams, architecture design challenges, explanations, flashcards, study plans and AWS service comparisons for any current AWS Certification exam across Foundational, Associate, Professional and Specialty levels. Use for any AWS exam code, including newly released exams verified against the live official index; for study with answer keys, one-question-at-a-time quizzes, mock exams, answer breakdowns, exam traps, and service trade-offs.
+description: Generate officially grounded practice questions, interactive quizzes, mock exams, architecture design challenges, explanations, flashcards, study plans and AWS service comparisons for any current AWS Certification exam across Business, Foundational, Associate, Professional and Specialty levels. Use when the user wants practice for any AWS exam code, including newly released exams verified against the live official index: study with answer keys, one-question-at-a-time quizzes, mock exams, answer breakdowns, exam traps, and service trade-offs.
 license: MIT
 compatibility: Requires Python 3.8+ for scripts/. Strongly recommends awslabs.aws-documentation-mcp-server; without it, official web sources are attempted. If no official source is reachable, the skill pauses graded content rather than inventing facts. Needs write access to $ZEKAI_STATE_DIR (default ~/.zekai). No AWS account or credentials required.
 metadata:
@@ -68,7 +68,7 @@ The script only trims whitespace and normalizes case; it never repairs a code. B
 - `local_catalog_match` — use its enriched metadata, then verify it against the live guide.
 - `needs_online_verification` — this may be a newly launched exam. Search the official index for the **exact code**. If found, derive all metadata from its guide and proceed without a local study map. If absent, ask the user to check the code; do not suggest a lookalike.
 - `known_retired` — explain `detail` and stop.
-- `malformed` — ask the user to check the exact code. Never autocorrect (especially AIF-C01 vs AIP-C01).
+- `malformed` — ask the user to check the exact code. Never autocorrect (especially AIF-C01 vs AIP-C01 vs AIB-C01).
 
 The local catalog is a cache, not an allowlist or the current complete exam list.
 
@@ -184,11 +184,9 @@ python3 scripts/session.py end
 
 Render the returned report with the end-of-session template: score, per-domain accuracy, weakest domains, review recommendations, official documentation links for the weak areas. Take every number from the JSON.
 
-**Markdown report.** After the in-chat summary, offer to save a full markdown report:
+**Markdown report.** After the in-chat summary, offer to save a full markdown report (translated per Core rule 1):
 
 > Want me to save a complete markdown report? It includes score, time per question, performance by domain, and a log of every question.
-
-WITHHELD: translate this offer to the user's language per Core rule 1 before rendering it.
 
 If the user accepts, run:
 
@@ -374,11 +372,9 @@ Never name the option letter and never identify which option is the distractor i
 
 A difficulty label is worthless if "exam-level" does not match the real exam. Collect evidence.
 
-After explaining a hard or exam-level question — roughly every fifth one, or whenever the user volunteers an opinion — ask how it landed:
+After explaining a hard or exam-level question — roughly every fifth one, or whenever the user volunteers an opinion — ask how it landed (translated per Core rule 1):
 
 > Did this question feel like real exam level, easier, or harder?
-
-WITHHELD: translate this question to the user's language per Core rule 1 before rendering it.
 
 Record it without touching score or question count:
 
@@ -394,7 +390,7 @@ Never ask for calibration while an answer is pending — that breaches rule 5.
 
 Generate only when the user explicitly asks, the exam format requires it, or the prompt says choose two/three.
 
-Three variants exist:
+Two variants exist:
 - **Select-two:** 2 correct answers out of 5 options (A–E) — common across all levels.
 - **Select-three:** 3 correct answers out of 6 options (A–F) — Professional and Specialty exams only.
 
@@ -402,11 +398,9 @@ In `pending-set`, set `correct_answers` to a list of 2 or 3 letters accordingly.
 
 In Interactive Quiz Mode: state the required count clearly, ask for comma-separated letters, and reveal nothing until the user responds.
 
-If the user submits the wrong number of letters, do **not** reveal the correct set, the status, or any explanation. Respond only:
+If the user submits the wrong number of letters, do **not** reveal the correct set, the status, or any explanation. Respond only with this message (translated per Core rule 1):
 
 > You selected {{n}} option(s), but this question requires {{required}}. Please resend your answer with {{required}} options, for example: **A, C** (select-two) or **A, C, E** (select-three).
-
-WITHHELD: translate this message to the user's language per Core rule 1 before rendering it.
 
 Then wait. A wrong letter count is not an answer, so nothing is recorded to `session.py`.
 

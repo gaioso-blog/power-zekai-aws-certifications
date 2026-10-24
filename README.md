@@ -5,7 +5,7 @@
 Um Kiro Power que transforma o IDE em um motor completo de estudo para certificações AWS.
 Gera questões originais fundamentadas em documentação oficial, simulados interativos,
 desafios de arquitetura com rubrica ponderada, flashcards, planos de estudo e comparações
-de serviços para qualquer certificação AWS atual — Foundational, Associate, Professional e Specialty.
+de serviços para qualquer certificação AWS atual — Business, Foundational, Associate, Professional e Specialty.
 
 > Cada resposta cita documentação oficial da AWS. Sem invenções, sem alucinações,
 > sem necessidade de conta ou credenciais AWS.
@@ -93,18 +93,19 @@ Metadados locais pré-carregados para estes exames:
 
 | Nível | Código | Nome |
 |---|---|---|
+| Business | AIB-C01 | AWS Certified AI Business Strategist |
 | Foundational | CLF-C02 | AWS Certified Cloud Practitioner |
 | Foundational | AIF-C01 | AWS Certified AI Practitioner |
 | Associate | SAA-C03 | AWS Certified Solutions Architect – Associate |
 | Associate | DVA-C02 | AWS Certified Developer – Associate |
 | Associate | SOA-C03 | AWS Certified CloudOps Engineer – Associate |
 | Associate | DEA-C01 | AWS Certified Data Engineer – Associate |
-| Associate | MLA-C01 | AWS Certified Machine Learning Engineer – Associate |
+| Associate | MLA-C02 | AWS Certified Machine Learning Engineer – Associate |
 | Professional | SAP-C02 | AWS Certified Solutions Architect – Professional |
 | Professional | DOP-C02 | AWS Certified DevOps Engineer – Professional |
 | Professional | AIP-C01 | AWS Certified Generative AI Developer – Professional |
 | Specialty | ANS-C01 | AWS Certified Advanced Networking – Specialty |
-| Specialty | SCS-C02 | AWS Certified Security – Specialty |
+| Specialty | SCS-C03 | AWS Certified Security – Specialty |
 
 Qualquer código não listado aqui é verificado automaticamente contra o índice oficial.
 Exames recém-lançados são suportados sem necessidade de atualizar o power.
@@ -295,13 +296,15 @@ Todo o estado interativo vive em disco em `~/.zekai` (sobrescrito via `$ZEKAI_ST
 
 O estado sobrevive à compactação de contexto, reinicializações do IDE e novas sessões de chat.
 
+**Persistência entre atualizações do power:** `~/.zekai` fica fora do diretório de instalação do power, então atualizar, reinstalar ou remover o power não apaga suas pontuações, histórico de tópicos nem sessões arquivadas. Os scripts rodam no shell do agente (não como subprocesso MCP), por isso o diretório `${PLUGIN_DATA}` da spec não está disponível para eles; é por isso que o caminho do estado é no nível do usuário. Para zerar tudo, apague o diretório manualmente ou use `session.py reset` (limpa apenas a sessão ativa; histórico e calibração são mantidos).
+
 ---
 
 ## Referência dos scripts
 
 ### session.py
 
-`scripts/session.py` é a fonte da verdade para todo o estado de sessão interativa.
+`scripts/session.py` é a fonte da verdade para todo o estado de sessão interativa. Ele é o ponto de entrada da CLI; a lógica fica em módulos irmãos (`zekai_common.py`, `zekai_quiz.py`, `zekai_summary.py`, `zekai_design.py`) para manter cada arquivo pequeno.
 Emite JSON no stdout e usa código de saída 0 para sucesso, 1 para erros.
 
 **Diretório de estado:** resolvido na ordem: flag `--state-dir` → `$ZEKAI_STATE_DIR` → `~/.zekai`
@@ -412,9 +415,9 @@ Arquivo de saída: `<output-dir>/ExamResults/<CÓDIGO>/<CÓDIGO>_<AAAAMMDD_HHMMS
 
 | Exames | Limite |
 |---|---|
-| CLF-C02, AIF-C01 | 700 / 1000 |
-| SAA-C03, DVA-C02, SOA-C03, DEA-C01, MLA-C01 | 720 / 1000 |
-| SAP-C02, DOP-C02, AIP-C01, ANS-C01, SCS-C02 | 750 / 1000 |
+| CLF-C02, AIF-C01, AIB-C01 | 700 / 1000 |
+| SAA-C03, DVA-C02, SOA-C03, DEA-C01, MLA-C02 | 720 / 1000 |
+| SAP-C02, DOP-C02, AIP-C01, ANS-C01, SCS-C03 | 750 / 1000 |
 | Todos os outros | 720 / 1000 (padrão AWS) |
 
 ---
@@ -431,7 +434,11 @@ zekai-aws-certifications/
     └── zekai-aws-certifications/
         ├── SKILL.md                               # Skill principal: todos os modos, regras, sequência de startup
         ├── scripts/
-        │   ├── session.py                         # Motor de estado de sessão (quiz + desafio de arquitetura)
+        │   ├── session.py                         # Ponto de entrada da CLI de estado (parser + despacho)
+        │   ├── zekai_common.py                    # Constantes, I/O de estado e helpers compartilhados
+        │   ├── zekai_quiz.py                      # Comandos de quiz: start, pending-*, timer-start, grade, calibrate
+        │   ├── zekai_summary.py                   # status, progress, asked, suggest, end, debug, reset
+        │   ├── zekai_design.py                    # Comandos do desafio de arquitetura (design-*)
         │   ├── resolve_exam.py                    # Validador de código de exame e cache de metadados
         │   └── export_report.py                   # Gerador de relatório markdown
         ├── references/
@@ -445,6 +452,7 @@ zekai-aws-certifications/
         │   ├── exam-guides.md                     # URL do índice de guias oficiais e estrutura
         │   ├── aws-service-by-exam.md             # Índice fallback de serviço por exame
         │   └── exams/
+        │       ├── aib-c01.md                     # Mapa de estudo: AI Business Strategist
         │       ├── aif-c01.md                     # Mapa de estudo: AWS AI Practitioner
         │       ├── aip-c01.md                     # Mapa de estudo: Generative AI Developer Professional
         │       ├── ans-c01.md                     # Mapa de estudo: Advanced Networking Specialty
@@ -452,10 +460,10 @@ zekai-aws-certifications/
         │       ├── dea-c01.md                     # Mapa de estudo: Data Engineer Associate
         │       ├── dop-c02.md                     # Mapa de estudo: DevOps Engineer Professional
         │       ├── dva-c02.md                     # Mapa de estudo: Developer Associate
-        │       ├── mla-c01.md                     # Mapa de estudo: Machine Learning Engineer Associate
+        │       ├── mla-c02.md                     # Mapa de estudo: Machine Learning Engineer Associate
         │       ├── saa-c03.md                     # Mapa de estudo: Solutions Architect Associate
         │       ├── sap-c02.md                     # Mapa de estudo: Solutions Architect Professional
-        │       ├── scs-c02.md                     # Mapa de estudo: Security Specialty
+        │       ├── scs-c03.md                     # Mapa de estudo: Security Specialty
         │       └── soa-c03.md                     # Mapa de estudo: CloudOps Engineer Associate
         └── assets/
             └── question-output-template.md        # Templates de output para todos os modos e tipos de questão
@@ -484,7 +492,7 @@ O servidor MCP é configurado em `mcp.json` na raiz do power:
 ```
 
 **Diretório de estado:** padrão `~/.zekai`. Sobrescreva com a variável de ambiente
-`ZEKAI_STATE_DIR` para usar um caminho diferente (ex.: diretório específico do projeto).
+`ZEKAI_STATE_DIR` para usar um caminho diferente (ex.: diretório específico do projeto). Esse diretório fica fora da pasta de instalação do power e persiste entre atualizações.
 
 ---
 
@@ -542,7 +550,7 @@ Se o curveball aparecer antes da avaliação, execute `design-clear` e inicie um
 - O catálogo local é um cache de conveniência. Se o código retornar
   `needs_online_verification`, o agente buscará no índice oficial ao vivo, isso é
   normal para exames recém-lançados.
-- Nunca autocorrija um código (ex.: AIF-C01 e AIP-C01 são exames diferentes).
+- Nunca autocorrija um código (ex.: AIF-C01, AIP-C01 e AIB-C01 são exames diferentes).
 
 **O Kiro esqueceu qual exame estou estudando**
 Isso pode acontecer após sessões muito longas. Diga o código do exame novamente

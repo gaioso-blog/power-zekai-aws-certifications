@@ -15,16 +15,17 @@ The `reference` field in that JSON output is the file to read.
 |---|---|
 | CLF-C02 | `references/exams/clf-c02.md` |
 | AIF-C01 | `references/exams/aif-c01.md` |
+| AIB-C01 | `references/exams/aib-c01.md` |
 | SAA-C03 | `references/exams/saa-c03.md` |
 | DVA-C02 | `references/exams/dva-c02.md` |
 | SOA-C03 | `references/exams/soa-c03.md` |
 | DEA-C01 | `references/exams/dea-c01.md` |
-| MLA-C01 | `references/exams/mla-c01.md` |
+| MLA-C02 | `references/exams/mla-c02.md` |
 | SAP-C02 | `references/exams/sap-c02.md` |
 | DOP-C02 | `references/exams/dop-c02.md` |
 | AIP-C01 | `references/exams/aip-c01.md` |
 | ANS-C01 | `references/exams/ans-c01.md` |
-| SCS-C02 | `references/exams/scs-c02.md` |
+| SCS-C03 | `references/exams/scs-c03.md` |
 
 ## Global rules for every study map
 
