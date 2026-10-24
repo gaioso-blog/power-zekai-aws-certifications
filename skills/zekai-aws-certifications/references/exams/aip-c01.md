@@ -3,8 +3,9 @@
 > Helper study map. The official exam guide is always the primary source of truth.
 > Never claim a service is in scope unless the guide supports it.
 >
-> **Do not confuse with AIF-C01.** AIP-C01 is Professional (Generative AI Developer).
-> AIF-C01 is Foundational (AI Practitioner). AIP-C01 is not a version of AIF-C01.
+> **Do not confuse with AIF-C01 or AIB-C01.** AIP-C01 is Professional (Generative AI Developer).
+> AIF-C01 is Foundational (AI Practitioner). AIB-C01 is the Business-category AI Business
+> Strategist exam. AIP-C01 is not a version of either.
 
 ## Main focus
 

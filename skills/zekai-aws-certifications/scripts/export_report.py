@@ -83,6 +83,7 @@ def passing_score_for(exam_code):
     thresholds = {
         "CLF-C02": 700,
         "AIF-C01": 700,
+        "AIB-C01": 700,
         "SAA-C03": 720,
         "DVA-C02": 720,
         "SOA-C03": 720,

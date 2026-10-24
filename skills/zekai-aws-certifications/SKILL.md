@@ -1,6 +1,6 @@
 ---
 name: zekai-aws-certifications
-description: Generate officially grounded practice questions, interactive quizzes, mock exams, architecture design challenges, explanations, flashcards, study plans and AWS service comparisons for any current AWS Certification exam across Foundational, Associate, Professional and Specialty levels. Use when the user wants practice for any AWS exam code, including newly released exams verified against the live official index: study with answer keys, one-question-at-a-time quizzes, mock exams, answer breakdowns, exam traps, and service trade-offs.
+description: Generate officially grounded practice questions, interactive quizzes, mock exams, architecture design challenges, explanations, flashcards, study plans and AWS service comparisons for any current AWS Certification exam across Business, Foundational, Associate, Professional and Specialty levels. Use when the user wants practice for any AWS exam code, including newly released exams verified against the live official index: study with answer keys, one-question-at-a-time quizzes, mock exams, answer breakdowns, exam traps, and service trade-offs.
 license: MIT
 compatibility: Requires Python 3.8+ for scripts/. Strongly recommends awslabs.aws-documentation-mcp-server; without it, official web sources are attempted. If no official source is reachable, the skill pauses graded content rather than inventing facts. Needs write access to $ZEKAI_STATE_DIR (default ~/.zekai). No AWS account or credentials required.
 metadata:
@@ -68,7 +68,7 @@ The script only trims whitespace and normalizes case; it never repairs a code. B
 - `local_catalog_match` — use its enriched metadata, then verify it against the live guide.
 - `needs_online_verification` — this may be a newly launched exam. Search the official index for the **exact code**. If found, derive all metadata from its guide and proceed without a local study map. If absent, ask the user to check the code; do not suggest a lookalike.
 - `known_retired` — explain `detail` and stop.
-- `malformed` — ask the user to check the exact code. Never autocorrect (especially AIF-C01 vs AIP-C01).
+- `malformed` — ask the user to check the exact code. Never autocorrect (especially AIF-C01 vs AIP-C01 vs AIB-C01).
 
 The local catalog is a cache, not an allowlist or the current complete exam list.
 

@@ -5,7 +5,7 @@
 Um Kiro Power que transforma o IDE em um motor completo de estudo para certificações AWS.
 Gera questões originais fundamentadas em documentação oficial, simulados interativos,
 desafios de arquitetura com rubrica ponderada, flashcards, planos de estudo e comparações
-de serviços para qualquer certificação AWS atual — Foundational, Associate, Professional e Specialty.
+de serviços para qualquer certificação AWS atual — Business, Foundational, Associate, Professional e Specialty.
 
 > Cada resposta cita documentação oficial da AWS. Sem invenções, sem alucinações,
 > sem necessidade de conta ou credenciais AWS.
@@ -93,6 +93,7 @@ Metadados locais pré-carregados para estes exames:
 
 | Nível | Código | Nome |
 |---|---|---|
+| Business | AIB-C01 | AWS Certified AI Business Strategist |
 | Foundational | CLF-C02 | AWS Certified Cloud Practitioner |
 | Foundational | AIF-C01 | AWS Certified AI Practitioner |
 | Associate | SAA-C03 | AWS Certified Solutions Architect – Associate |
@@ -414,7 +415,7 @@ Arquivo de saída: `<output-dir>/ExamResults/<CÓDIGO>/<CÓDIGO>_<AAAAMMDD_HHMMS
 
 | Exames | Limite |
 |---|---|
-| CLF-C02, AIF-C01 | 700 / 1000 |
+| CLF-C02, AIF-C01, AIB-C01 | 700 / 1000 |
 | SAA-C03, DVA-C02, SOA-C03, DEA-C01, MLA-C01 | 720 / 1000 |
 | SAP-C02, DOP-C02, AIP-C01, ANS-C01, SCS-C02 | 750 / 1000 |
 | Todos os outros | 720 / 1000 (padrão AWS) |
@@ -451,6 +452,7 @@ zekai-aws-certifications/
         │   ├── exam-guides.md                     # URL do índice de guias oficiais e estrutura
         │   ├── aws-service-by-exam.md             # Índice fallback de serviço por exame
         │   └── exams/
+        │       ├── aib-c01.md                     # Mapa de estudo: AI Business Strategist
         │       ├── aif-c01.md                     # Mapa de estudo: AWS AI Practitioner
         │       ├── aip-c01.md                     # Mapa de estudo: Generative AI Developer Professional
         │       ├── ans-c01.md                     # Mapa de estudo: Advanced Networking Specialty
@@ -548,7 +550,7 @@ Se o curveball aparecer antes da avaliação, execute `design-clear` e inicie um
 - O catálogo local é um cache de conveniência. Se o código retornar
   `needs_online_verification`, o agente buscará no índice oficial ao vivo, isso é
   normal para exames recém-lançados.
-- Nunca autocorrija um código (ex.: AIF-C01 e AIP-C01 são exames diferentes).
+- Nunca autocorrija um código (ex.: AIF-C01, AIP-C01 e AIB-C01 são exames diferentes).
 
 **O Kiro esqueceu qual exame estou estudando**
 Isso pode acontecer após sessões muito longas. Diga o código do exame novamente

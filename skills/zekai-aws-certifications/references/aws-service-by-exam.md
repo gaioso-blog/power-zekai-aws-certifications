@@ -15,6 +15,7 @@ The `reference` field in that JSON output is the file to read.
 |---|---|
 | CLF-C02 | `references/exams/clf-c02.md` |
 | AIF-C01 | `references/exams/aif-c01.md` |
+| AIB-C01 | `references/exams/aib-c01.md` |
 | SAA-C03 | `references/exams/saa-c03.md` |
 | DVA-C02 | `references/exams/dva-c02.md` |
 | SOA-C03 | `references/exams/soa-c03.md` |

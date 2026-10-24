@@ -80,6 +80,12 @@ EXAMS = {
         "guide_url": "https://docs.aws.amazon.com/aws-certification/latest/examguides/ai-professional-01.html",
         "reference": "references/exams/aip-c01.md",
     },
+    "AIB-C01": {
+        "exam_name": "AWS Certified AI Business Strategist",
+        "level": "Business",
+        "guide_url": "https://docs.aws.amazon.com/aws-certification/latest/ai-business-strategist-01/ai-business-strategist-01.html",
+        "reference": "references/exams/aib-c01.md",
+    },
     "ANS-C01": {
         "exam_name": "AWS Certified Advanced Networking - Specialty",
         "level": "Specialty",
@@ -110,8 +116,9 @@ RETIRED = {
 
 # Frequently confused pairs the agent must never conflate.
 DISAMBIGUATION = {
-    "AIF-C01": "AIF-C01 is AI Practitioner (Foundational). Not a variant of AIP-C01.",
-    "AIP-C01": "AIP-C01 is Generative AI Developer (Professional). Not a variant of AIF-C01.",
+    "AIB-C01": "AIB-C01 is AI Business Strategist (Business category, strategy and governance, not technical). Not a variant of AIF-C01 or AIP-C01. Do not accept 'AB1-C01'.",
+    "AIF-C01": "AIF-C01 is AI Practitioner (Foundational). Not a variant of AIB-C01 or AIP-C01.",
+    "AIP-C01": "AIP-C01 is Generative AI Developer (Professional). Not a variant of AIB-C01 or AIF-C01.",
 }
 
 ALL_CODES = sorted(EXAMS)

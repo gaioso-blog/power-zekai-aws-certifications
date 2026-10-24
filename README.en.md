@@ -5,7 +5,7 @@
 A Kiro Power that turns the IDE into a full-featured AWS certification study engine.
 Generates officially grounded practice questions, interactive quizzes, mock exams,
 architecture design challenges, flashcards, study plans, and service comparisons for
-any current AWS Certification exam — Foundational, Associate, Professional, and Specialty.
+any current AWS Certification exam — Business, Foundational, Associate, Professional, and Specialty.
 
 > Every answer cites official AWS documentation. No guessing, no hallucinations,
 > no AWS credentials required.
@@ -91,6 +91,7 @@ Local metadata is pre-loaded for these exams:
 
 | Level | Code | Name |
 |---|---|---|
+| Business | AIB-C01 | AWS Certified AI Business Strategist |
 | Foundational | CLF-C02 | AWS Certified Cloud Practitioner |
 | Foundational | AIF-C01 | AWS Certified AI Practitioner |
 | Associate | SAA-C03 | AWS Certified Solutions Architect – Associate |
@@ -407,7 +408,7 @@ Output file: `<output-dir>/ExamResults/<EXAM_CODE>/<EXAM_CODE>_<YYYYMMDD_HHMMSS>
 
 | Exams | Threshold |
 |---|---|
-| CLF-C02, AIF-C01 | 700 / 1000 |
+| CLF-C02, AIF-C01, AIB-C01 | 700 / 1000 |
 | SAA-C03, DVA-C02, SOA-C03, DEA-C01, MLA-C01 | 720 / 1000 |
 | SAP-C02, DOP-C02, AIP-C01, ANS-C01, SCS-C02 | 750 / 1000 |
 | All others | 720 / 1000 (AWS default) |
@@ -444,6 +445,7 @@ zekai-aws-certifications/
         │   ├── exam-guides.md                     # Official exam guides index URL and structure
         │   ├── aws-service-by-exam.md             # Fallback service-to-exam index
         │   └── exams/
+        │       ├── aib-c01.md                     # Study map: AI Business Strategist
         │       ├── aif-c01.md                     # Study map: AWS AI Practitioner
         │       ├── aip-c01.md                     # Study map: Generative AI Developer Professional
         │       ├── ans-c01.md                     # Study map: Advanced Networking Specialty
@@ -540,7 +542,7 @@ If the curveball appears before grading, run `design-clear` and start a fresh ch
 **Exam code not recognised**
 - The local catalog is a convenience cache. If your code returns `needs_online_verification`,
   the agent will search the live official index, this is normal for newly launched exams.
-- Never autocorrect a code (e.g., AIF-C01 and AIP-C01 are different exams).
+- Never autocorrect a code (e.g., AIF-C01, AIP-C01 and AIB-C01 are different exams).
 
 **Kiro seems to have forgotten which exam I'm studying for**
 This can happen after very long sessions. Say your exam code again

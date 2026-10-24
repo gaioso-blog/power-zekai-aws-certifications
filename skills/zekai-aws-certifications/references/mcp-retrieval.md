@@ -23,7 +23,7 @@ grouped by level:
 https://docs.aws.amazon.com/aws-certification/latest/examguides/aws-certification-exam-guides.html
 
 If a code is absent from the local catalog, search the index for that exact code. Never
-replace it with a similar code; AIF-C01 and AIP-C01 are different exams. A code is rejected
+replace it with a similar code; AIF-C01, AIP-C01 and AIB-C01 are different exams. A code is rejected
 only when the live official index has no exact match.
 
 ## Guide fallback ladder
