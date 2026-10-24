@@ -4,3 +4,4 @@ __pycache__/
 
 # Type checker cache
 .mypy_cache/
+.DS_Store
