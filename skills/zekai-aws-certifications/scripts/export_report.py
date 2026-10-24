@@ -88,11 +88,14 @@ def passing_score_for(exam_code):
         "DVA-C02": 720,
         "SOA-C03": 720,
         "DEA-C01": 720,
-        "MLA-C01": 720,
+        "MLA-C02": 720,
         "SAP-C02": 750,
         "DOP-C02": 750,
         "AIP-C01": 750,
         "ANS-C01": 750,
+        "SCS-C03": 750,
+        # Retired versions: kept so reports from archived sessions still use the right threshold.
+        "MLA-C01": 720,
         "SCS-C02": 750,
     }
     return thresholds.get(exam_code.upper(), 720)

@@ -56,11 +56,11 @@ EXAMS = {
         "guide_url": "https://d1.awsstatic.com/training-and-certification/docs-data-engineer-associate/AWS-Certified-Data-Engineer-Associate_Exam-Guide.pdf",
         "reference": "references/exams/dea-c01.md",
     },
-    "MLA-C01": {
+    "MLA-C02": {
         "exam_name": "AWS Certified Machine Learning Engineer - Associate",
         "level": "Associate",
-        "guide_url": "https://d1.awsstatic.com/training-and-certification/docs-machine-learning-engineer-associate/AWS-Certified-Machine-Learning-Engineer-Associate_Exam-Guide.pdf",
-        "reference": "references/exams/mla-c01.md",
+        "guide_url": "https://docs.aws.amazon.com/aws-certification/latest/machine-learning-engineer-associate-02/machine-learning-engineer-associate-02.html",
+        "reference": "references/exams/mla-c02.md",
     },
     "SAP-C02": {
         "exam_name": "AWS Certified Solutions Architect - Professional",
@@ -92,11 +92,11 @@ EXAMS = {
         "guide_url": "https://d1.awsstatic.com/training-and-certification/docs-advnetworking-spec/AWS-Certified-Advanced-Networking-Specialty_Exam-Guide.pdf",
         "reference": "references/exams/ans-c01.md",
     },
-    "SCS-C02": {
+    "SCS-C03": {
         "exam_name": "AWS Certified Security - Specialty",
         "level": "Specialty",
-        "guide_url": "https://d1.awsstatic.com/training-and-certification/docs-security-spec/AWS-Certified-Security-Specialty_Exam-Guide.pdf",
-        "reference": "references/exams/scs-c02.md",
+        "guide_url": "https://docs.aws.amazon.com/aws-certification/latest/security-specialty-03/security-specialty-03.html",
+        "reference": "references/exams/scs-c03.md",
     },
 }
 
@@ -111,7 +111,9 @@ RETIRED = {
     "SOA-C02": "Retired September 29, 2025. Superseded by SOA-C03 (AWS Certified CloudOps Engineer - Associate), which added containers to scope.",
     "SAP-C01": "Superseded by SAP-C02.",
     "DOP-C01": "Superseded by DOP-C02.",
-    "SCS-C01": "Superseded by SCS-C02.",
+    "SCS-C01": "Superseded by SCS-C02, which was itself superseded by SCS-C03.",
+    "SCS-C02": "Retired December 1, 2025. Superseded by SCS-C03 (AWS Certified Security - Specialty), in use beginning December 2, 2025, which restructured the domains and added generative AI security.",
+    "MLA-C01": "Retired September 28, 2026. Superseded by MLA-C02 (AWS Certified Machine Learning Engineer - Associate), in use beginning September 29, 2026, which added foundation models, RAG and agents.",
 }
 
 # Frequently confused pairs the agent must never conflate.

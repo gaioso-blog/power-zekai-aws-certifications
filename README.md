@@ -100,12 +100,12 @@ Metadados locais pré-carregados para estes exames:
 | Associate | DVA-C02 | AWS Certified Developer – Associate |
 | Associate | SOA-C03 | AWS Certified CloudOps Engineer – Associate |
 | Associate | DEA-C01 | AWS Certified Data Engineer – Associate |
-| Associate | MLA-C01 | AWS Certified Machine Learning Engineer – Associate |
+| Associate | MLA-C02 | AWS Certified Machine Learning Engineer – Associate |
 | Professional | SAP-C02 | AWS Certified Solutions Architect – Professional |
 | Professional | DOP-C02 | AWS Certified DevOps Engineer – Professional |
 | Professional | AIP-C01 | AWS Certified Generative AI Developer – Professional |
 | Specialty | ANS-C01 | AWS Certified Advanced Networking – Specialty |
-| Specialty | SCS-C02 | AWS Certified Security – Specialty |
+| Specialty | SCS-C03 | AWS Certified Security – Specialty |
 
 Qualquer código não listado aqui é verificado automaticamente contra o índice oficial.
 Exames recém-lançados são suportados sem necessidade de atualizar o power.
@@ -416,8 +416,8 @@ Arquivo de saída: `<output-dir>/ExamResults/<CÓDIGO>/<CÓDIGO>_<AAAAMMDD_HHMMS
 | Exames | Limite |
 |---|---|
 | CLF-C02, AIF-C01, AIB-C01 | 700 / 1000 |
-| SAA-C03, DVA-C02, SOA-C03, DEA-C01, MLA-C01 | 720 / 1000 |
-| SAP-C02, DOP-C02, AIP-C01, ANS-C01, SCS-C02 | 750 / 1000 |
+| SAA-C03, DVA-C02, SOA-C03, DEA-C01, MLA-C02 | 720 / 1000 |
+| SAP-C02, DOP-C02, AIP-C01, ANS-C01, SCS-C03 | 750 / 1000 |
 | Todos os outros | 720 / 1000 (padrão AWS) |
 
 ---
@@ -460,10 +460,10 @@ zekai-aws-certifications/
         │       ├── dea-c01.md                     # Mapa de estudo: Data Engineer Associate
         │       ├── dop-c02.md                     # Mapa de estudo: DevOps Engineer Professional
         │       ├── dva-c02.md                     # Mapa de estudo: Developer Associate
-        │       ├── mla-c01.md                     # Mapa de estudo: Machine Learning Engineer Associate
+        │       ├── mla-c02.md                     # Mapa de estudo: Machine Learning Engineer Associate
         │       ├── saa-c03.md                     # Mapa de estudo: Solutions Architect Associate
         │       ├── sap-c02.md                     # Mapa de estudo: Solutions Architect Professional
-        │       ├── scs-c02.md                     # Mapa de estudo: Security Specialty
+        │       ├── scs-c03.md                     # Mapa de estudo: Security Specialty
         │       └── soa-c03.md                     # Mapa de estudo: CloudOps Engineer Associate
         └── assets/
             └── question-output-template.md        # Templates de output para todos os modos e tipos de questão
